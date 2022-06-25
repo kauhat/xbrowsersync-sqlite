@@ -1,0 +1,11 @@
+
+addr: ":9090"
+
+dbs:
+  - path: ${LITESTREAM_DB_URL}
+    replicas:
+    - type: s3
+      bucket: ${LITESTREAM_S3_BUCKET}
+      # path: db # change to whatever path you want
+      endpoint: ${LITESTREAM_S3_ENDPOINT}
+      # force-path-style: true
