@@ -1,9 +1,10 @@
 ARG VERSION="current"
 
+#
 FROM flyio/litestream-base as litestream
 
 # Node app...
-FROM node:$VERSION-alpine
+FROM node:$VERSION-alpine as builder
 
 # Setup litestream...
 COPY --from=litestream /litestream /litestream
@@ -21,4 +22,4 @@ RUN npm install --production
 COPY . .
 
 #
-CMD [ "/litestream/start.sh" , "npm start"]
+CMD [ "/litestream/start.sh" , "node ./index.js"]
